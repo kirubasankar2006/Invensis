@@ -6,13 +6,12 @@ Prerequisit for the project
   - Check the python installation using the command: python --version
   - Installing PIP. 
     PIP should be availabe by default. Check the pip availability using the command: pip --version
-    If not then:
-            a)download it using ---> curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
-            b)Run it using ----> py get-pip.py
-  
+    If not available then:
+            a)download it using (using command prompt) ---> curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+            b)Run it using ----> py get-pip.py  
   - Download git 
   
-All the below commands can be executed from git bash. 
+All the below commands can be executed from git bash or command promot 
 Project set up:
   - create a folder Invensis_dir
   - Git bash to the project   
@@ -21,7 +20,7 @@ Project set up:
 Activate the virtual environemnt
   - Go to Invensis_dir
   - Type --> python -m venv invensisvenv
-    Now virtual environemnt is created
+    Now virtual environemnt is created. You can activate the virtual environment using the below commands from the git bash or command promot and navigating to the project folder. 
         - For windows --> .\invensisvenv\Scripts\activate
         - For linux -->  /invensisvenv/bin/acitvate
 
