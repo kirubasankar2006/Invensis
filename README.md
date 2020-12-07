@@ -32,7 +32,7 @@ Install the packages
 Start the development server:
   - python manage.py runserver
     
-  
+Note: All the API's can be accessed via browser itself as session authentication is enabled.   
   
    
  
