@@ -13,7 +13,7 @@ class UserSerializer(serializers.ModelSerializer):
     # imagefield = serializers.ImageField()
     class Meta:
         model = User
-        fields = ('username', 'first_name', 'last_name', 'full_name', 'email', 'password', 'profile')
+        fields = ('id', 'username', 'first_name', 'last_name', 'full_name', 'email', 'password', 'profile')
         extra_kwargs = {'password' : {'write_only' : True}}
         
     def get_full_name(self, obj):
@@ -21,6 +21,7 @@ class UserSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         profile = validated_data.pop('profile')
+        print("creating profile........................................")
         profileimage = profile['image']
         user = super().create(validated_data)
         user.set_password(validated_data['password'])
@@ -53,28 +54,29 @@ class UserUpdateSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('username', 'first_name', 'last_name', 'full_name', 'email', 'imagefield')
+        fields = ('id', 'username', 'first_name', 'last_name', 'full_name', 'email', 'imagefield')
         # extra_kwargs = {'password' : {'write_only' : True}}
 
     def update(self, instance, validated_data):
         # profile = validated_data.pop('profile')   
-        print(validated_data)     
+        print('validated_data---', validated_data)     
         # profileimage = profile['image']
-        return super().update(instance, validated_data)
+        response = super().update(instance, validated_data)
+        return response
 
 class CommentsSerializer(serializers.ModelSerializer):
     author = serializers.StringRelatedField(read_only=True)  
     # post =   serializers.StringRelatedField(read_only=True)  
     class Meta:
         model = Comments
-        fields = ('content', 'created_at', 'active','author')
+        fields = ('id', 'content', 'created_at', 'active','author')
 
 class PostSerializer(serializers.ModelSerializer):
     author= serializers.StringRelatedField(read_only=True)    
     comments_set = CommentsSerializer(many=True, read_only=True)
     class Meta:
         model = Post
-        fields = ('title', 'imageURL','content','subtitle', 'published_at', 'author', 'comments_set')
+        fields = ('id', 'title', 'imageURL','content','subtitle', 'published_at', 'author', 'comments_set')
 
 class UserPostSerializer(serializers.ModelSerializer):
     profile = ProfileSerializer()    
@@ -82,4 +84,4 @@ class UserPostSerializer(serializers.ModelSerializer):
     # imagefield = serializers.ImageField()
     class Meta:
         model = User
-        fields = ('username', 'first_name', 'last_name', 'email', 'profile', 'post_set')
+        fields = ('id', 'username', 'first_name', 'last_name', 'email', 'profile', 'post_set')

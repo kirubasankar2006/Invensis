@@ -47,6 +47,7 @@ INSTALLED_APPS = [
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.BasicAuthentication',
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.TokenAuthentication',
     ]
@@ -92,6 +93,10 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
+REDIS_HOST = 'localhost'
+REDIS_PORT = 6379
+
 
 
 # Password validation
